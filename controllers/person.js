@@ -90,12 +90,16 @@ export const editPerson = async (req, res) => {
     }
     res.status(200).json({ status: 'success', person });
   } catch (error) {
-    const person = await Person.findOneAndUpdate({ name: userId }, { name }, { runValidators: true, new: true });
-    if (!person) {
-      res.status(404).json({ status: 'failed', errmsg: 'Person was not found' });
-      return;
+    try {
+      const person = await Person.findOneAndUpdate({ name: userId }, { name }, { runValidators: true, new: true });
+      if (!person) {
+        res.status(404).json({ status: 'failed', errmsg: 'Person was not found' });
+        return;
+      }
+      res.status(200).json({ status: 'success', person });
+    } catch (error) {
+      res.status(400).json({ status: 'failed', errmsg: 'Possible duplicate entry' });
     }
-    res.status(200).json({ status: 'success', person });
   };
 };
 export const replacePerson = async (req, res) => {
@@ -122,11 +126,15 @@ export const replacePerson = async (req, res) => {
     }
     res.status(200).json({ status: 'success', person });
   } catch (error) {
-    const person = await Person.findOneAndUpdate({ name: userId }, { name }, { runValidators: true, new: true });
-    if (!person) {
-      res.status(404).json({ status: 'failed', errmsg: 'Person was not found' });
-      return;
+    try {
+      const person = await Person.findOneAndUpdate({ name: userId }, { name }, { runValidators: true, new: true });
+      if (!person) {
+        res.status(404).json({ status: 'failed', errmsg: 'Person was not found' });
+        return;
+      }
+      res.status(200).json({ status: 'success', person });
+    } catch (error) {
+      res.status(400).json({ status: 'failed', errmsg: 'Possible duplicate entry' });
     }
-    res.status(200).json({ status: 'success', person });
   };
 };

@@ -80,3 +80,8 @@ install with npm install or yarn install
 add environment variables, MONGO_URI (connection string) only for hosted server, on local machine, create a ".env" file, add the following variables: MONGO_URI and PORT
 npm or yarn start or npm run dev (for nodemon)
 Good to go,
+
+# usage examples
+revert to folder "usage examples woth post man" for some examples and out puts
+
+# Thanks
